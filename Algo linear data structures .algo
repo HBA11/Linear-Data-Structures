@@ -1,0 +1,70 @@
+ALGORITHM algorithm_Linear_Data_Structures
+
+VAR
+    set1: ARRAY_OF INTEGER[50];
+    set2: ARRAY_OF INTEGER[50];
+    sum, i, j : INTEGER := 0;
+BEGIN
+    Read(set1);
+    Read(set2);
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        FOR j FROM 0 TO set2.length-1 STEP 1  DO
+            IF (set[i] <> set2[j]) THEN
+            sum:= sum + set1[i];
+            END_IF
+        END_FOR
+    END_FOR
+
+    FOR j FROM 0 TO set2.length-1 STEP 1  DO
+        FOR i FROM 0 TO set1.length-1 STEP 1  DO
+            IF (set2[j] <> set1[i]) THEN
+                sum:= sum + set2[j];
+            END_IF
+        END_FOR
+    END_FOR
+    Write (sum);
+    END
+
+//Problem1_solution2 (hash_table)
+
+VAR
+    set1: ARRAY_OF INTEGER[50];
+    set2: ARRAY_OF INTEGER[50];
+    htab: HASH_TABLE<STRING,INTEGER>;
+    sum, i, j : INTEGER := 0;
+BEGIN
+    Read(set1);
+    Read(set2);
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        FOR j FROM 0 TO set2.length-1 STEP 1  DO
+            IF (set[i] <> set2[j]) THEN
+            htab.insert(str[i], 1); ELSE
+            htab.insert(str[i], 2);
+            END_IF
+        END_FOR
+    END_FOR
+    
+    FOR j FROM 0 TO set2.length-1 STEP 1  DO
+        FOR i FROM 0 TO set1.length-1 STEP 1  DO
+            IF (set2[j] <> set1[i]) THEN
+                htab.insert(set2[i], 1); ELSE
+                htab.insert(set2[i], 2);
+            END_IF
+        END_FOR
+    END_FOR 
+
+    t1 : ARRAY_OF INTEGER[100];
+    t2 : ARRAY_OF INTEGER[100];
+    t1:= htab.getkeys();
+    t2:= htab.getvalue();
+    FOR i FROM 0 TO t1.length-1 STEP 1  DO
+        FOR j FROM 0 TO t2.length-1 STEP step  DO
+        IF (t2[j]=1) THEN
+            sum:= sum + t1[j]
+        END_IF
+        
+        END_FOR
+    END_FOR
+    
+    Write(sum);
+    END
